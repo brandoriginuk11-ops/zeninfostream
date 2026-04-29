@@ -49,6 +49,88 @@ button{background:#E60023;color:#fff;padding:10px 20px;border:none;}
 </head>
 
 <body>
+  <style>
+    #popup {
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      padding: 25px 35px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: none;
+      text-align: center;
+      font-family: sans-serif;
+    }
+
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      z-index: 999;
+    }
+
+    button {
+      margin: 10px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .yes {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .no {
+      background-color: #f44336;
+      color: white;
+    }
+  </style>
+
+<button onclick="openPopup()">ポップアップを開く</button>
+
+<div id="overlay"></div>
+<div id="popup">
+  <h3>質問</h3>
+  <p>ヨガをするのが好きですか？</p>
+  <button class="yes" onclick="handleAnswer('はい')">はい</button>
+  <button class="no" onclick="handleAnswer('いいえ')">いいえ</button>
+</div>
+
+<script>
+  function openPopup() {
+    document.getElementById("popup").style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+
+    document.addEventListener("mousemove", closeOnMove);
+  }
+
+  function closeOnMove() {
+    closePopup();
+    document.removeEventListener("mousemove", closeOnMove);
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+  }
+
+  function handleAnswer(answer) {
+    alert("あなたの選択: " + answer);
+    closePopup();
+    document.removeEventListener("mousemove", closeOnMove);
+  }
+</script>
+
    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script>
     function aesDecode(encodedText) {
